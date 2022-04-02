@@ -1,0 +1,23 @@
+{
+  "name": "tiddlywikilinks",
+  "version": "0.1.0",
+  "description": "Collecting TiddlyWiki Links",
+  "dependencies": {
+    "node-fetch": "^2.6.7",
+    "normalize-url": "^5.3.1",
+    "tiddlywiki": "github:Jermolene/TiddlyWiki5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "npm run build && npm run serve",
+    "build": "npm run clean-output && npm run collect-links && npm run build-dist",
+    "build-serve": "npm run build-dist && npm run serve",
+    "clean-output": "./bin/clean.sh",
+    "collect-links": "node ./bin/collect-links.js",
+    "build-dist": "npx tiddlywiki app-wiki --output dist --build index",
+    "serve": "npx http-server ./dist",
+    "test": "node bin/test.js"
+  },
+  "author": "Jeremy Ruston",
+  "license": "MIT"
+}

@@ -1,0 +1,30 @@
+title: $:/_Templates/Details/Contributor
+
+<!--
+
+Render the details of a particular contributor
+
+Parameters:
+
+    contributor: Name of the contributor
+    tv-path-to-root: Optional relative path to get to the root of the site
+
+-->
+<$vars currentTiddler={{{ [tag[$:/tags/LinkSource]name<contributor>] }}}>
+<h1>{{$:/_Templates/RichLink/Contributor}}</h1>
+<p>
+Publishing <$count filter="[tag[$:/tags/Link]origin<contributor>]"/> links from: <a href={{!!url}} target="_blank" rel="noopener noreferrer"><$text text={{!!url}}/></a>
+</p>
+<p class="tc-contributor-info">
+<$transclude mode="inline"/>
+</p>
+<ul class="tc-list-vertical">
+<$list filter="[tag[$:/tags/Link]field:origin<contributor>!sort[modified]]" variable="link-title">
+<li>
+<$vars tv-linkpanel-show-contributor="no" tv-linkpanel-show-url="yes">
+{{$:/_Templates/Components/LinkPanel}}
+</$vars>
+</li>
+</$list>
+</ul>
+</$vars>
